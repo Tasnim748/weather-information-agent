@@ -5,6 +5,7 @@ from typing import List
 from langchain_core.tools import BaseTool
 
 from prompts.system_prompts import get_tool_prompt
+from tools.forecast_tools import get_forecast
 from tools.weather_tools import city_to_coords, get_current_weather
 from settings import Settings
 
@@ -25,7 +26,7 @@ class WeatherAgent:
         )
         
         # Available tools
-        self.tools: List[BaseTool] = [city_to_coords, get_current_weather]
+        self.tools: List[BaseTool] = [city_to_coords, get_current_weather, get_forecast]
         
         # Create tool map for execution
         self.tool_map = {tool.name: tool for tool in self.tools}

@@ -155,3 +155,22 @@ class OpenWeatherClient:
         if lang:
             params["lang"] = lang
         return await self._get("/data/2.5/weather", params)
+    
+
+    async def forecast_5day(
+        self,
+        *,
+        lat: float,
+        lon: float,
+        units: str = "metric",
+        lang: Optional[str] = None,
+    ) -> Dict[str, Any]:
+        """
+        OpenWeather 5 Day / 3 Hour Forecast.
+        Returns forecast data with 3-hour intervals (raw JSON).
+        """
+        params: Dict[str, Any] = {"lat": lat, "lon": lon, "units": units}
+        if lang:
+            params["lang"] = lang
+        return await self._get("/data/2.5/forecast", params)
+
